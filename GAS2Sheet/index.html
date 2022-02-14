@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>表單</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link href="index.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container" id="app">
+        <div class="double-wrap" :class="{ hide: !loading }">
+            <div class="double">
+                <div class="double-bounce1"></div>
+                <div class="double-bounce2"></div>
+            </div>
+        </div>
+        <h1 class="text-center">Topic</h1>
+        <div class="text-center page">
+            <div class="form-group">
+                <label for="main_id">請輸入員編</label>
+                <input class="form-control" id="main_id" type="number" v-model="id" @input="limitIdLen(id)" />
+            </div>
+            <div class="form-group">
+                <label for="name">姓名</label>
+                <input class="form-control" id="name" type="text" v-model="person.name" disabled="disabled" />
+            </div>
+            <div class="two-col">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="seat">座位</label>
+                        <input class="form-control" id="seat" type="text" v-model="person.seat" :disabled="person.name == undefined" />
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="temperature">體溫</label>
+                        <input class="form-control" id="temperature" type="number" v-model="person.temperature" :disabled="person.name == undefined" />
+                    </div>
+                </div>
+            </div>
+            <div class="submit"><a href="#" :class="{ disabled: person.name == undefined || person.seat == undefined || person.temperature == undefined}" @click.prevent="submit">送出</a></div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="index.js"></script>
+
+</body>
+</html>
